@@ -13,7 +13,8 @@ data = DataEnergeticMaterials()
 
 # OR — temporary below for data from Joseph which was already run through clip_raw_data
 
-path = "/scratch/pdy2bw/class5_mesoscale_processed/"
+# path = "/scratch/pdy2bw/class5_mesoscale_processed/"
+path = "/usr/workspace/gray65/data/class5_mesoscale_processed/"
 
 x = np.float32(np.load(path + "mesoscale_x.npy"))
 u = np.float32(np.load(path + "mesoscale_u.npy"))

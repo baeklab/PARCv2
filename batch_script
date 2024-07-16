@@ -1,0 +1,23 @@
+#!/bin/tcsh
+
+    ### LSF syntax
+    #BSUB -nnodes 1                   #number of nodes
+    #BSUB -W 24                       #walltime in minutes
+    #BSUB -G mahem                    #account
+    #BSUB -e test_error.txt           #stderr
+    #BSUB -o test_output.txt          #stdout
+    #BSUB -J PARC_test                #name of job
+    #BSUB -q pdebug                   #queue to use
+
+
+    ### Shell scripting
+    date; hostname
+    echo -n 'JobID is '; echo $LSB_JOBID
+
+    ### Launch parallel executable
+    module unload cuda
+    python train.py
+
+
+    echo 'Done'
+
