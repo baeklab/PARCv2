@@ -1,6 +1,6 @@
 import tensorflow as tf
 from parc.layers.op import advection, diffusion
-from parc.layers.smap import style_map
+from parc.modules.smap import style_map
 from parc.models.resnet import resnet27, resnet50, resnet101, resnet152
 from parc.models.unet import unet
 
