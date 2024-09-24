@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-class spade_unit(tf.keras.layers.Layer):
+class SpadeUnit(tf.keras.layers.Layer):
     def __init__(self, n_feats=128):
         super().__init__()
         self.conv = tf.keras.layers.Conv2D(n_feats, 3, padding='same', activation='relu')
@@ -32,7 +32,7 @@ class spade_unit(tf.keras.layers.Layer):
         
         return normalized   
 
-class spade_block(tf.keras.layers.Layer): 
+class SpadeBlock(tf.keras.layers.Layer): 
     def __init__(self, n_feats=128):
         super().__init__()
         self.spade1 = spade_unit(n_feats=n_feats)

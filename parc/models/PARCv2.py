@@ -1,9 +1,9 @@
 import tensorflow as tf
-from parc.modules.differentiator import differentiator
-from parc.modules.integrator import integrator
+from parc.modules.differentiator import Differentiator
+from parc.modules.integrator import Integrator
 
 
-class parcV2(tf.keras.Model):
+class ParcV2(tf.keras.Model):
     def __init__(self, numerical_int='fe', n_ts=1, n_step=1/40, resnet_blocks=10):
         """
         Args:
@@ -13,8 +13,8 @@ class parcV2(tf.keras.Model):
             resnet_blocks:  (int) backbone to extract features, {0:UNet, 27:ResNet27, 50:ResNet50, 101:ResNet101, 150:ResNet150}
         """
         super().__init__()
-        self.differentiator = differentiator(resnet_blocks=resnet_blocks)
-        self.integrator = integrator()
+        self.differentiator = Differentiator(resnet_blocks=resnet_blocks)
+        self.integrator = Integrator()
         self.numerical_int = numerical_int
         self.n_ts = n_ts
         self.n_step = n_step

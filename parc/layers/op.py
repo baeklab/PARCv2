@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-class advection(tf.keras.layers.Layer):
+class Advection(tf.keras.layers.Layer):
     def __init__(self): 
         super().__init__()
         
@@ -19,7 +19,7 @@ class advection(tf.keras.layers.Layer):
         advect = tf.reduce_sum( tf.multiply( spatial_deriv, u ), axis=-1, keepdims=True )
         return advect
 
-class diffusion(tf.keras.layers.Layer):
+class Diffusion(tf.keras.layers.Layer):
     def __init__(self): 
         super().__init__()
         

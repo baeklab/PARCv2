@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-class unet(tf.keras.layers.Layer):
+class Unet(tf.keras.layers.Layer):
     def __init__(self, n_feats=64, n_feature_map=128):
         """ 
         Args: 

@@ -1,17 +1,17 @@
 import tensorflow as tf
-from parc.layers.resnet import resnet_block
-from parc.layers.regularizer import spade_block
+from parc.layers.resnet import ResnetBlock
+from parc.layers.regularizer import SpadeBlock
 
-class integrator_unit(tf.keras.layers.Layer):
+class IntegratorUnit(tf.keras.layers.Layer):
     def __init__(self, n_feats=128, n_out=1):
         super().__init__()
 
         self.conv1 = tf.keras.layers.Conv2D(n_feats, 1, padding='same', activation='relu')
         self.conv2 = tf.keras.layers.Conv2D(n_feats, 1, padding='same', activation='relu')
 
-        self.resnet2 = resnet_block(filters=n_feats, n_blocks=2, stride=1, n_out=n_feats)
+        self.resnet2 = ResNetBlock(filters=n_feats, n_blocks=2, stride=1, n_out=n_feats)
 
-        self.style = spade_block(n_feats=n_feats)
+        self.style = SpadeBlock(n_feats=n_feats)
         self.conv = tf.keras.layers.Conv2D(n_out, 1, padding='same')
 
     def call(self, inputs):
@@ -30,13 +30,13 @@ class integrator_unit(tf.keras.layers.Layer):
         out = self.conv(resnet_out)
         return out
 
-class integrator(tf.keras.layers.Layer):
+class Integrator(tf.keras.layers.Layer):
     def __init__(self, n_feats=128):
         super().__init__()
-        self.T_int = integrator_unit(n_feats=n_feats)
-        self.P_int = integrator_unit(n_feats=n_feats)
-        self.M_int = integrator_unit(n_feats=n_feats)
-        self.U_int = integrator_unit(n_feats=n_feats, n_out=2)
+        self.T_int = IntegratorUnit(n_feats=n_feats)
+        self.P_int = IntegratorUnit(n_feats=n_feats)
+        self.M_int = IntegratorUnit(n_feats=n_feats)
+        self.U_int = IntegratorUnit(n_feats=n_feats, n_out=2)
         
     def call(self, inputs):
         """

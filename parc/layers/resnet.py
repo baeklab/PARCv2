@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-class resnet_unit(tf.keras.layers.Layer):
+class ResNetUnit(tf.keras.layers.Layer):
     def __init__(self, filters, stride=1, n_out=None):
         super().__init__()
         if n_out is not None:
@@ -20,7 +20,7 @@ class resnet_unit(tf.keras.layers.Layer):
         added = tf.keras.layers.ReLU()(tf.math.add( shortcut, c3 ))
         return added
 
-class resnet_block(tf.keras.layers.Layer):
+class ResNetBlock(tf.keras.layers.Layer):
     def __init__(self, filters, n_blocks, stride=1, n_out=None):
         super().__init__()
         self.n_blocks=n_blocks

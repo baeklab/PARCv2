@@ -1,36 +1,36 @@
 import tensorflow as tf
-from parc.layers.op import advection, diffusion
-from parc.modules.smap import style_map
-from parc.models.resnet import resnet27, resnet50, resnet101, resnet152
-from parc.models.unet import unet
+from parc.layers.op import Advection, Diffusion
+from parc.modules.smap import StyleMap
+from parc.models.resnet import Resnet27, Resnet50, Resnet101, Resnet152
+from parc.models.unet import Unet
 
-class differentiator(tf.keras.layers.Layer):
+class Differentiator(tf.keras.layers.Layer):
     def __init__(self, n_feats=128, resnet_blocks=0):
         super().__init__()
         if resnet_blocks==27:
-            self.backbone = resnet27()
+            self.backbone = Resnet27()
         elif resnet_blocks==50:
-            self.backbone = resnet50()
+            self.backbone = Resnet50()
         elif resnet_blocks==101: 
-            self.backbone = resnet101()
+            self.backbone = Resnet101()
         elif resnet_blocks==152:
-            self.backbone = resnet152()
+            self.backbone = Resnet152()
         elif resnet_blocks==0: 
-            self.backbone = unet()
+            self.backbone = Unet()
         else: 
             raise Exception( f"resnet_blocks={resnet_blocks} not available. Please implement resnet{resnet_blocks} at  resnet.py" )
 
-        self.T_adv = advection()
-        self.P_adv = advection()
-        self.M_adv = advection()
-        self.VX_adv = advection()
-        self.VY_adv = advection()
-        self.diffusion = diffusion()
+        self.T_adv = Advection()
+        self.P_adv = Advection()
+        self.M_adv = Advection()
+        self.VX_adv = Advection()
+        self.VY_adv = Advection()
+        self.diffusion = Diffusion()
 
-        self.T_map = style_map(n_feats)
-        self.P_map = style_map(n_feats)
-        self.M_map = style_map(n_feats)
-        self.V_map = style_map(n_feats, n_out=2)
+        self.T_map = StyleMap(n_feats)
+        self.P_map = StyleMap(n_feats)
+        self.M_map = StyleMap(n_feats)
+        self.V_map = StyleMap(n_feats, n_out=2)
 
     def call(self, inputs):
         T_in = inputs[..., 0:1]
