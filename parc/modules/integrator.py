@@ -3,6 +3,8 @@ from parc.layers.resnet import ResNetBlock
 from parc.layers.regularizer import SpadeBlock
 
 class IntegratorUnit(tf.keras.layers.Layer):
+    """ data-driven integrator to correct errors of numerial integrator for higher order terms
+    """ 
     def __init__(self, n_feats=128, n_out=1):
         super().__init__()
 

@@ -2,7 +2,7 @@ import tensorflow as tf
 
 class Unet(tf.keras.layers.Layer):
     def __init__(self, n_feats=64, n_feature_map=128):
-        """ 
+        """ Implementation of the UNet model (ref: https://arxiv.org/pdf/1505.04597) with modified skip connections
         Args: 
             n_feats:        (int)   base number of features for UNet construction
             n_feature_map:  (int)   number of feature map for output

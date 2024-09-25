@@ -6,6 +6,8 @@ from parc.modules.integrator import Integrator
 class ParcV2(tf.keras.Model):
     def __init__(self, numerical_int='fe', n_ts=1, n_step=1/40, resnet_blocks=10):
         """
+        deep neural network designed from inspiration of governing equation of the advection-diffusion-reaction equation. 
+        
         Args:
             numerical_int:  (str) numerical integrator, {'fe', 'rk4'}  
             n_ts:           (int) number of time steps to train/inference on 
@@ -19,9 +21,7 @@ class ParcV2(tf.keras.Model):
         self.n_ts = n_ts
         self.n_step = n_step
 
-    # debug with inference
     def call(self, inputs):
-        # tag: copy and referenc error => make sure to copy or don't use redundant updates
         x_in, u_in = tf.cast( inputs[0], tf.float32 ), tf.cast( inputs[1], tf.float32 )
         data_in = tf.concat( [x_in, u_in], axis=-1 )
 
