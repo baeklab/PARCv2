@@ -56,4 +56,4 @@ class Integrator(tf.keras.layers.Layer):
         U_next = self.U_int( u[..., 4:6], u_dot[..., 4:6] ) # tag: double check
         X_next = keras.concat( [T_next, P_next, M_next], axis=-1 )        
         
-        return tf.convert_to_tensor(X_next), tf.convert_to_tensor(V_next)
+        return tf.convert_to_tensor(X_next), tf.convert_to_tensor(U_next)
