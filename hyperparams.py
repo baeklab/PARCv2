@@ -1,0 +1,2 @@
+DIR_PKG = "/home/nmf8dm/research/pkgs/PARCv2" # UPDATE TO YOUR DIRECTORY
+DIR_DATA = "/home/nmf8dm/research/PARCv2/code" # WILL BE REMOVED ONCE DATA SET MODULES ARE INTEGRATED
