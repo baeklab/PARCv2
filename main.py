@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
@@ -7,9 +6,12 @@ import os.path as osp
 from datetime import datetime
 import pickle
 
-from PARC.data.data_em import *
+from parc.models.PARCv2 import ParcV2
 import parc_refactor
 
+import sys
+sys.path.append( DIR_PKG )
+sys.path.append( DIR_DATA )
 
 def main(model_name, dir_save, numerical_int='fe', resnet_blocks=0, n_ts=1, epochs=500, batch_size=8, diff=None):
     """
@@ -45,7 +47,7 @@ def main(model_name, dir_save, numerical_int='fe', resnet_blocks=0, n_ts=1, epoc
 
     # prepare data
     tf.keras.backend.clear_session()
-    parc = parc_refactor_resnet.parcV2(n_ts=n_ts, numerical_int=numerical_int, resnet_blocks=resnet_blocks)
+    parc = ParcV2(n_ts=n_ts, numerical_int=numerical_int, resnet_blocks=resnet_blocks)
 
     if diff is not None: 
         parc.predict( [x_norm[0][..., :3], u_norm[0][..., :2]] )
