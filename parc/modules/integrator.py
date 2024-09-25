@@ -1,5 +1,5 @@
 import tensorflow as tf
-from parc.layers.resnet import ResnetBlock
+from parc.layers.resnet import ResNetBlock
 from parc.layers.regularizer import SpadeBlock
 
 class IntegratorUnit(tf.keras.layers.Layer):

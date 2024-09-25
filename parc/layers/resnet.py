@@ -26,8 +26,8 @@ class ResNetBlock(tf.keras.layers.Layer):
         self.n_blocks=n_blocks
         self.resnet_blocks = [None] * n_blocks
         for i in range(self.n_blocks - 1):
-            self.resnet_blocks[i] = resnet_unit(filters, stride=stride)
-        self.resnet_blocks[-1] = resnet_unit(filters, stride=stride, n_out=n_out) if n_out is not None else resnet_unit(filters, stride=stride)
+            self.resnet_blocks[i] = ResNetUnit(filters, stride=stride)
+        self.resnet_blocks[-1] = ResNetUnit(filters, stride=stride, n_out=n_out) if n_out is not None else ResNetUnit(filters, stride=stride)
 
     def call(self, inputs):
         x = self.resnet_blocks[0](inputs)

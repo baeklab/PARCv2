@@ -35,9 +35,9 @@ class SpadeUnit(tf.keras.layers.Layer):
 class SpadeBlock(tf.keras.layers.Layer): 
     def __init__(self, n_feats=128):
         super().__init__()
-        self.spade1 = spade_unit(n_feats=n_feats)
-        self.spade2 = spade_unit(n_feats=n_feats)
-        self.spade3 = spade_unit(n_feats=n_feats)
+        self.spade1 = SpadeUnit(n_feats=n_feats)
+        self.spade2 = SpadeUnit(n_feats=n_feats)
+        self.spade3 = SpadeUnit(n_feats=n_feats)
         
         self.conv1 = tf.keras.layers.Conv2D(n_feats, 3, padding='same')
         self.conv2 = tf.keras.layers.Conv2D(n_feats, 3, padding='same')
