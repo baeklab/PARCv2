@@ -15,7 +15,7 @@ class BaseData:
         vmins = []
         vmaxs = [] #fixed size
         for i in range(n_channel):
-            norm_data[:,:,:,i::n_channel] = ((x[:,:,:,i::n_channel] - np.amin(x[:,:,:,i::n_channel])) / (np.amax(x[:,:,:,i::no_of_channel]) - np.amin(input_data[:,:,:,i::no_of_channel])) + 1E-9)
+            norm_data[:,:,:,i::n_channel] = ((x[:,:,:,i::n_channel] - np.amin(x[:,:,:,i::n_channel])) / (np.amax(x[:,:,:,i::n_channel]) - np.amin(x[:,:,:,i::n_channel])) + 1E-9)
             vmins.append(np.amin(x[:,:,:,i::n_channel]))
             vmaxs.append(np.amax(x[:,:,:,i::n_channel]))
         return norm_data, vmins, vmaxs        
